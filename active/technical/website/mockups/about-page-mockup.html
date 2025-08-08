@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Heather Whitaker - Self Inventory Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color Palette */
+            --sage-green: #9CAF88;
+            --warm-cream: #F5F2E9;
+            --terracotta: #C4806B;
+            --deep-olive: #6B7A5A;
+            --sandstone: #D4B896;
+            --mocha: #8B6F47;
+            --warm-white: #FDFCF8;
+            --light-gray: #F0EDE6;
+            --medium-gray: #8E8B85;
+            --dark-charcoal: #2C2B28;
+            --soft-coral: #E8A598;
+            --pale-blue: #B8C5D1;
+
+            /* Typography */
+            --font-primary: 'Lora', serif;
+            --font-secondary: 'Inter', sans-serif;
+
+            /* Spacing */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+            --space-4xl: 96px;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            color: var(--dark-charcoal);
+            background: var(--warm-white);
+            line-height: 1.6;
+        }
+
+        /* Header (same as homepage) */
+        .header {
+            background: rgba(253, 252, 248, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: var(--font-primary);
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--deep-olive);
+            text-decoration: none;
+        }
+
+        .nav {
+            display: flex;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--dark-charcoal);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.2s ease;
+        }
+
+        .nav a:hover, .nav a.active {
+            color: var(--sage-green);
+        }
+
+        .cta-button {
+            background: var(--sage-green);
+            color: var(--warm-white);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 16px;
+        }
+
+        .cta-button:hover {
+            background: var(--deep-olive);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(107, 122, 90, 0.3);
+        }
+
+        .secondary-button {
+            background: transparent;
+            color: var(--sage-green);
+            border: 2px solid var(--sage-green);
+            padding: 10px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .secondary-button:hover {
+            background: var(--sage-green);
+            color: var(--warm-white);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px var(--space-lg) var(--space-4xl);
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: var(--space-4xl);
+            align-items: center;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(44, 43, 40, 0.2);
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-primary);
+            font-size: 48px;
+            line-height: 1.2;
+            color: var(--dark-charcoal);
+            margin-bottom: var(--space-md);
+        }
+
+        .hero-content .subtitle {
+            font-size: 20px;
+            color: var(--medium-gray);
+            margin-bottom: var(--space-xl);
+            line-height: 1.5;
+        }
+
+        .credentials-list {
+            list-style: none;
+        }
+
+        .credentials-list li {
+            color: var(--sage-green);
+            font-weight: 500;
+            margin-bottom: var(--space-sm);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .credentials-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--sage-green);
+            font-weight: 600;
+        }
+
+        /* Personal Story Section */
+        .personal-story {
+            background: var(--light-gray);
+            padding: var(--space-4xl) var(--space-lg);
+        }
+
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .story-content h2 {
+            font-family: var(--font-primary);
+            font-size: 36px;
+            color: var(--dark-charcoal);
+            margin-bottom: var(--space-xl);
+        }
+
+        .story-content p {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: var(--space-lg);
+            color: var(--dark-charcoal);
+        }
+
+        .story-highlight {
+            background: var(--warm-white);
+            padding: var(--space-xl);
+            border-radius: 16px;
+            margin: var(--space-xl) 0;
+            border-left: 4px solid var(--sage-green);
+            font-style: italic;
+            box-shadow: 0 4px 16px rgba(44, 43, 40, 0.05);
+        }
+
+        /* Credentials Section */
+        .credentials {
+            padding: var(--space-4xl) var(--space-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .credentials h2 {
+            font-family: var(--font-primary);
+            font-size: 36px;
+            text-align: center;
+            color: var(--dark-charcoal);
+            margin-bottom: var(--space-3xl);
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-xl);
+            margin-bottom: var(--space-3xl);
+        }
+
+        .credential-card {
+            background: var(--warm-white);
+            border: 1px solid var(--light-gray);
+            border-radius: 16px;
+            padding: var(--space-xl);
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(44, 43, 40, 0.08);
+            transition: transform 0.2s ease;
+        }
+
+        .credential-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .credential-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--sage-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-lg);
+            font-size: 36px;
+            color: var(--warm-white);
+        }
+
+        .credential-card h3 {
+            font-family: var(--font-primary);
+            font-size: 20px;
+            color: var(--dark-charcoal);
+            margin-bottom: var(--space-sm);
+        }
+
+        .credential-card .institution {
+            color: var(--medium-gray);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-xl);
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: var(--space-lg);
+        }
+
+        .stat-number {
+            font-family: var(--font-primary);
+            font-size: 48px;
+            color: var(--sage-green);
+            font-weight: 600;
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--medium-gray);
+            font-weight: 500;
+            margin-top: var(--space-sm);
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            background: var(--warm-cream);
+            padding: var(--space-4xl) var(--space-lg);
+        }
+
+        .philosophy-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: var(--space-4xl);
+            align-items: center;
+        }
+
+        .philosophy-text h2 {
+            font-family: var(--font-primary);
+            font-size: 36px;
+            color: var(--dark-charcoal);
+            margin-bottom: var(--space-lg);
+        }
+
+        .philosophy-text p {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: var(--space-lg);
+            color: var(--dark-charcoal);
+        }
+
+        .philosophy-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(44, 43, 40, 0.15);
+        }
+
+        /* Personal Touches Section */
+        .personal-touches {
+            padding: var(--space-4xl) var(--space-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .personal-touches h2 {
+            font-family: var(--font-primary);
+            font-size: 36px;
+            text-align: center;
+            color: var(--dark-charcoal);
+            margin-bottom: var(--space-3xl);
+        }
+
+        .touches-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-xl);
+        }
+
+        .touch-card {
+            text-align: center;
+        }
+
+        .touch-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: var(--space-lg);
+            box-shadow: 0 4px 16px rgba(44, 43, 40, 0.1);
+        }
+
+        .touch-card h3 {
+            font-family: var(--font-primary);
+            font-size: 22px;
+            color: var(--dark-charcoal);
+            margin-bottom: var(--space-sm);
+        }
+
+        .touch-card p {
+            color: var(--medium-gray);
+            line-height: 1.6;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: var(--sage-green);
+            color: var(--warm-white);
+            padding: var(--space-4xl) var(--space-lg);
+            text-align: center;
+        }
+
+        .final-cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .final-cta h2 {
+            font-family: var(--font-primary);
+            font-size: 36px;
+            margin-bottom: var(--space-lg);
+        }
+
+        .final-cta p {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: var(--space-xl);
+            opacity: 0.9;
+        }
+
+        .final-cta .cta-button {
+            background: var(--warm-white);
+            color: var(--sage-green);
+            font-size: 18px;
+            padding: 16px 32px;
+        }
+
+        .final-cta .cta-button:hover {
+            background: var(--light-gray);
+            transform: translateY(-2px);
+        }
+
+        /* Footer (same as homepage) */
+        .footer {
+            background: var(--dark-charcoal);
+            color: var(--warm-white);
+            padding: var(--space-3xl) var(--space-lg) var(--space-xl);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: var(--space-3xl);
+        }
+
+        .footer-brand h3 {
+            font-family: var(--font-primary);
+            font-size: 24px;
+            margin-bottom: var(--space-md);
+        }
+
+        .footer-brand p {
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: var(--space-lg);
+        }
+
+        .footer-links h4 {
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+        }
+
+        .footer-links a {
+            color: var(--warm-white);
+            text-decoration: none;
+            opacity: 0.8;
+            display: block;
+            margin-bottom: var(--space-sm);
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(253, 252, 248, 0.2);
+            margin-top: var(--space-xl);
+            padding-top: var(--space-lg);
+            text-align: center;
+            opacity: 0.6;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav {
+                display: none; /* Simplified for demo */
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 100px var(--space-md) var(--space-3xl);
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .philosophy-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .credentials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .touches-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">Self Inventory Lab</a>
+            <nav class="nav">
+                <a href="#home">Home</a>
+                <a href="#about" class="active">About</a>
+                <a href="#method">Method</a>
+                <a href="#services">Services</a>
+                <a href="#resources">Resources</a>
+                <a href="#contact">Contact</a>
+                <a href="#book" class="cta-button">Book Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-image">
+            <img src="https://media.licdn.com/dms/image/v2/D5603AQHV7Cf3fXktqQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1676064858654?e=1756944000&v=beta&t=J9oxLtVrUm_z7YsnZm-v75MuK_yZJ_FttkgDL67O5FU" alt="Heather Whitaker - Professional Portrait">
+        </div>
+        <div class="hero-content">
+            <h1>Meet Heather Whitaker</h1>
+            <p class="subtitle">Your guide to authentic self-discovery and transformation</p>
+            <ul class="credentials-list">
+                <li>Certified Human Design Reader</li>
+                <li>Internal Family Systems Practitioner</li>
+                <li>Transformational Life Coach</li>
+                <li>10+ Years Guiding Transformation</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Personal Story -->
+    <section class="personal-story">
+        <div class="story-content">
+            <h2>My Journey to Authenticity</h2>
+            <p>For years, I lived according to what others expected of me. I had a successful corporate career, looked good on paper, but felt completely disconnected from who I truly was.</p>
+            
+            <p>I was the classic overachiever, saying yes to everything, people-pleasing my way through life, and wondering why I felt so empty despite all my external success. I was anxious, overwhelmed, and constantly questioning my decisions.</p>
+            
+            <div class="story-highlight">
+                <p>"The moment I discovered Human Design and Internal Family Systems, everything changed. I finally understood why I operated the way I did, and more importantly, I learned there was nothing wrong with me—I just needed to understand my unique design."</p>
+            </div>
+            
+            <p>That discovery launched me on a journey of deep self-exploration and healing. I dove into studying Human Design, became certified as an Internal Family Systems practitioner, and began working with my own coach to unravel years of conditioning.</p>
+            
+            <p>The transformation wasn't overnight, but it was profound. I learned to trust my inner authority, set healthy boundaries, and make decisions from a place of authenticity rather than fear or obligation.</p>
+            
+            <p>Now, I'm passionate about helping others avoid the years of confusion and disconnection I experienced. The Insight Mapping System I've developed combines everything I learned on my journey into a clear, practical roadmap for authentic living.</p>
+        </div>
+    </section>
+
+    <!-- Credentials -->
+    <section class="credentials">
+        <h2>Certifications & Experience</h2>
+        <div class="credentials-grid">
+            <div class="credential-card">
+                <div class="credential-icon">📊</div>
+                <h3>Certified Human Design Reader</h3>
+                <p class="institution">International Human Design School</p>
+            </div>
+            <div class="credential-card">
+                <div class="credential-icon">🧠</div>
+                <h3>IFS Level 1 Practitioner</h3>
+                <p class="institution">Center for Self Leadership</p>
+            </div>
+            <div class="credential-card">
+                <div class="credential-icon">⚡</div>
+                <h3>Certified Life Coach</h3>
+                <p class="institution">International Coach Federation (ICF)</p>
+            </div>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">10+</span>
+                <p class="stat-label">Years Experience</p>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">150+</span>
+                <p class="stat-label">Clients Transformed</p>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">500+</span>
+                <p class="stat-label">Sessions Delivered</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section class="philosophy">
+        <div class="philosophy-content">
+            <div class="philosophy-text">
+                <h2>My Coaching Philosophy</h2>
+                <p>I believe that within each person lies an authentic self waiting to be discovered and expressed.</p>
+                
+                <p>My role is not to fix you or tell you who to be, but to help you remember who you already are. You have all the wisdom you need inside you—sometimes we just need help accessing it.</p>
+                
+                <p>Through the Insight Mapping System, we'll uncover your unique design, identify the patterns keeping you stuck, and create a clear path forward that honors your true nature.</p>
+                
+                <p>Transformation happens when we stop trying to be someone we're not and start living as who we truly are. That's where real freedom and fulfillment begin.</p>
+                
+                <a href="#book" class="cta-button">Book a Discovery Call</a>
+            </div>
+            <div class="philosophy-image">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Peaceful nature scene representing inner wisdom">
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Touches -->
+    <section class="personal-touches">
+        <h2>When I'm Not Coaching</h2>
+        <div class="touches-grid">
+            <div class="touch-card">
+                <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Hiking in nature" class="touch-image">
+                <h3>Exploring Nature</h3>
+                <p>You'll find me on hiking trails, connecting with the natural world and finding quiet moments for reflection and renewal.</p>
+            </div>
+            <div class="touch-card">
+                <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Reading personal development books" class="touch-image">
+                <h3>Continuous Learning</h3>
+                <p>I'm always devouring personal development books, spiritual texts, and anything that deepens my understanding of human potential.</p>
+            </div>
+            <div class="touch-card">
+                <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Family time" class="touch-image">
+                <h3>Family Connection</h3>
+                <p>Quality time with my family is sacred—creating memories, sharing meals, and practicing presence in everyday moments.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="final-cta-content">
+            <h2>Ready to Begin Your Journey?</h2>
+            <p>Let's explore how the Insight Mapping System can transform your life. Book a free discovery call and let's see if we're a good fit to work together.</p>
+            <a href="#book" class="cta-button">Book Free Discovery Call</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Self Inventory Lab</h3>
+                <p>Transformational coaching for authentic self-discovery</p>
+                <p>&copy; 2025 Self Inventory Lab</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#resources">Resources</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Email</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+</body>
+</html>

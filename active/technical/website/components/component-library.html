@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self Inventory Lab - Component Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color Palette */
+            --sage-green: #9CAF88;
+            --warm-cream: #F5F2E9;
+            --terracotta: #C4806B;
+            --deep-olive: #6B7A5A;
+            --sandstone: #D4B896;
+            --mocha: #8B6F47;
+            --warm-white: #FDFCF8;
+            --light-gray: #F0EDE6;
+            --medium-gray: #8E8B85;
+            --dark-charcoal: #2C2B28;
+            --soft-coral: #E8A598;
+            --pale-blue: #B8C5D1;
+
+            /* Typography */
+            --font-primary: 'Lora', serif;
+            --font-secondary: 'Inter', sans-serif;
+
+            /* Spacing */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+            --space-4xl: 96px;
+
+            /* Shadows */
+            --shadow-sm: 0 2px 8px rgba(44, 43, 40, 0.05);
+            --shadow-md: 0 4px 16px rgba(44, 43, 40, 0.08);
+            --shadow-lg: 0 8px 32px rgba(44, 43, 40, 0.15);
+            --shadow-xl: 0 12px 40px rgba(44, 43, 40, 0.2);
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            color: var(--dark-charcoal);
+            background: var(--warm-white);
+            line-height: 1.6;
+            padding: var(--space-xl);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: var(--font-primary);
+            font-size: 48px;
+            color: var(--dark-charcoal);
+            margin-bottom: var(--space-2xl);
+            text-align: center;
+        }
+
+        h2 {
+            font-family: var(--font-primary);
+            font-size: 32px;
+            color: var(--dark-charcoal);
+            margin: var(--space-3xl) 0 var(--space-xl);
+            border-bottom: 2px solid var(--sage-green);
+            padding-bottom: var(--space-sm);
+        }
+
+        h3 {
+            font-family: var(--font-primary);
+            font-size: 24px;
+            color: var(--deep-olive);
+            margin: var(--space-xl) 0 var(--space-md);
+        }
+
+        .component-section {
+            margin-bottom: var(--space-3xl);
+            padding: var(--space-xl);
+            background: var(--light-gray);
+            border-radius: 16px;
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+
+        .component-demo {
+            background: var(--warm-white);
+            padding: var(--space-lg);
+            border-radius: 12px;
+            border: 1px solid rgba(44, 43, 40, 0.1);
+        }
+
+        .component-title {
+            font-weight: 600;
+            color: var(--deep-olive);
+            margin-bottom: var(--space-md);
+            font-size: 16px;
+        }
+
+        /* Typography Components */
+        .display-text {
+            font-family: var(--font-primary);
+            font-size: 48px;
+            line-height: 1.2;
+            font-weight: 600;
+        }
+
+        .h1-text {
+            font-family: var(--font-primary);
+            font-size: 36px;
+            line-height: 1.3;
+            font-weight: 600;
+        }
+
+        .h2-text {
+            font-family: var(--font-primary);
+            font-size: 28px;
+            line-height: 1.3;
+            font-weight: 600;
+        }
+
+        .h3-text {
+            font-family: var(--font-primary);
+            font-size: 22px;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        .body-large {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .body-text {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .body-small {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .caption-text {
+            font-size: 12px;
+            line-height: 1.4;
+            color: var(--medium-gray);
+        }
+
+        /* Button Components */
+        .btn-primary {
+            background: var(--sage-green);
+            color: var(--warm-white);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--deep-olive);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--sage-green);
+            border: 2px solid var(--sage-green);
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: var(--sage-green);
+            color: var(--warm-white);
+        }
+
+        .btn-text {
+            background: none;
+            border: none;
+            color: var(--deep-olive);
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 8px 0;
+        }
+
+        .btn-text:hover {
+            text-decoration: underline;
+            color: var(--sage-green);
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 18px;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        /* Card Components */
+        .card {
+            background: var(--warm-white);
+            border-radius: 12px;
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-md);
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-service {
+            text-align: center;
+            border: 1px solid var(--light-gray);
+        }
+
+        .card-service h4 {
+            font-family: var(--font-primary);
+            font-size: 20px;
+            margin-bottom: var(--space-md);
+            color: var(--dark-charcoal);
+        }
+
+        .card-service p {
+            color: var(--medium-gray);
+            margin-bottom: var(--space-lg);
+        }
+
+        .card-service .price {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--sage-green);
+            margin-bottom: var(--space-lg);
+        }
+
+        .card-testimonial {
+            background: var(--light-gray);
+            border-radius: 16px;
+            padding: var(--space-xl);
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            font-style: italic;
+            margin-bottom: var(--space-lg);
+            color: var(--dark-charcoal);
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--sage-green);
+            flex-shrink: 0;
+        }
+
+        .author-info h5 {
+            font-weight: 600;
+            color: var(--dark-charcoal);
+            margin: 0;
+        }
+
+        .author-info p {
+            color: var(--medium-gray);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .card-blog {
+            overflow: hidden;
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            background: var(--sage-green);
+            border-radius: 8px;
+            margin-bottom: var(--space-md);
+        }
+
+        .blog-meta {
+            color: var(--medium-gray);
+            font-size: 14px;
+            margin-bottom: var(--space-sm);
+        }
+
+        .blog-title {
+            font-family: var(--font-primary);
+            font-size: 18px;
+            margin-bottom: var(--space-sm);
+            color: var(--dark-charcoal);
+        }
+
+        .blog-excerpt {
+            color: var(--medium-gray);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Form Components */
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--dark-charcoal);
+            margin-bottom: var(--space-sm);
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--light-gray);
+            border-radius: 6px;
+            font-size: 16px;
+            font-family: var(--font-secondary);
+            background: var(--warm-white);
+            transition: border-color 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--sage-green);
+        }
+
+        .form-input.error {
+            border-color: var(--soft-coral);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: var(--font-secondary);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--light-gray);
+            border-radius: 6px;
+            font-size: 16px;
+            background: var(--warm-white);
+            cursor: pointer;
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .form-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+
+        .form-error {
+            color: var(--soft-coral);
+            font-size: 14px;
+            margin-top: var(--space-xs);
+        }
+
+        .form-help {
+            color: var(--medium-gray);
+            font-size: 14px;
+            margin-top: var(--space-xs);
+        }
+
+        /* Navigation Components */
+        .nav-primary {
+            display: flex;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-charcoal);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.2s ease;
+            padding: var(--space-sm) 0;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--sage-green);
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--medium-gray);
+            font-size: 14px;
+            margin-bottom: var(--space-lg);
+        }
+
+        .breadcrumb-separator {
+            color: var(--medium-gray);
+        }
+
+        .breadcrumb-link {
+            color: var(--medium-gray);
+            text-decoration: none;
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--sage-green);
+        }
+
+        .breadcrumb-current {
+            color: var(--dark-charcoal);
+            font-weight: 500;
+        }
+
+        /* Icon Components */
+        .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+        }
+
+        .icon-sm {
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-lg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .icon-xl {
+            width: 48px;
+            height: 48px;
+        }
+
+        /* Badge Components */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-primary {
+            background: var(--sage-green);
+            color: var(--warm-white);
+        }
+
+        .badge-secondary {
+            background: var(--light-gray);
+            color: var(--dark-charcoal);
+        }
+
+        .badge-success {
+            background: #10B981;
+            color: white;
+        }
+
+        .badge-warning {
+            background: #F59E0B;
+            color: white;
+        }
+
+        .badge-error {
+            background: var(--soft-coral);
+            color: white;
+        }
+
+        /* Alert Components */
+        .alert {
+            padding: var(--space-md);
+            border-radius: 8px;
+            margin-bottom: var(--space-lg);
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: rgba(184, 197, 209, 0.1);
+            border-color: var(--pale-blue);
+            color: var(--dark-charcoal);
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: #10B981;
+            color: var(--dark-charcoal);
+        }
+
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: #F59E0B;
+            color: var(--dark-charcoal);
+        }
+
+        .alert-error {
+            background: rgba(232, 165, 152, 0.1);
+            border-color: var(--soft-coral);
+            color: var(--dark-charcoal);
+        }
+
+        /* Loading States */
+        .skeleton {
+            background: linear-gradient(90deg, var(--light-gray) 25%, var(--warm-cream) 50%, var(--light-gray) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 4px;
+        }
+
+        .skeleton-text {
+            height: 16px;
+            margin-bottom: var(--space-sm);
+        }
+
+        .skeleton-title {
+            height: 24px;
+            width: 60%;
+            margin-bottom: var(--space-md);
+        }
+
+        .skeleton-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        .spinner {
+            border: 2px solid var(--light-gray);
+            border-top: 2px solid var(--sage-green);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-right { text-align: right; }
+
+        .text-primary { color: var(--sage-green); }
+        .text-secondary { color: var(--medium-gray); }
+        .text-success { color: #10B981; }
+        .text-warning { color: #F59E0B; }
+        .text-error { color: var(--soft-coral); }
+
+        .bg-primary { background-color: var(--sage-green); }
+        .bg-secondary { background-color: var(--light-gray); }
+        .bg-cream { background-color: var(--warm-cream); }
+
+        .shadow-sm { box-shadow: var(--shadow-sm); }
+        .shadow-md { box-shadow: var(--shadow-md); }
+        .shadow-lg { box-shadow: var(--shadow-lg); }
+        .shadow-xl { box-shadow: var(--shadow-xl); }
+
+        .rounded-sm { border-radius: 4px; }
+        .rounded { border-radius: 8px; }
+        .rounded-lg { border-radius: 12px; }
+        .rounded-xl { border-radius: 16px; }
+        .rounded-full { border-radius: 50%; }
+
+        .mb-0 { margin-bottom: 0; }
+        .mb-sm { margin-bottom: var(--space-sm); }
+        .mb-md { margin-bottom: var(--space-md); }
+        .mb-lg { margin-bottom: var(--space-lg); }
+        .mb-xl { margin-bottom: var(--space-xl); }
+
+        .mt-0 { margin-top: 0; }
+        .mt-sm { margin-top: var(--space-sm); }
+        .mt-md { margin-top: var(--space-md); }
+        .mt-lg { margin-top: var(--space-lg); }
+        .mt-xl { margin-top: var(--space-xl); }
+
+        @media (max-width: 768px) {
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .display-text {
+                font-size: 36px;
+            }
+            
+            .h1-text {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Self Inventory Lab Component Library</h1>
+
+        <!-- Typography -->
+        <section class="component-section">
+            <h2>Typography</h2>
+            <div class="component-grid">
+                <div class="component-demo">
+                    <div class="component-title">Display Text</div>
+                    <div class="display-text">Transform Your Life</div>
+                </div>
+                <div class="component-demo">
+                    <div class="component-title">H1 Heading</div>
+                    <div class="h1-text">Meet Heather Whitaker</div>
+                </div>
+                <div class="component-demo">
+                    <div class="component-title">H2 Heading</div>
+                    <div class="h2-text">My Journey to Authenticity</div>
+                </div>
+                <div class="component-demo">
+                    <div class="component-title">H3 Heading</div>
+                    <div class="h3-text">How We Can Work Together</div>
+                </div>
+                <div class="component-demo">
+                    <div class="component-title">Body Large</div>
+                    <div class="body-large">Perfect for introductory paragraphs and important content that needs emphasis.</div>
+                </div>
+                <div class="component-demo">
+                    <div class="component-title">Body Text</div>
+                    <div class="body-text">This is the standard body text used throughout the website for most content and descriptions.</div>
+                </div>
+                <div class="component-demo">
+                    <div class="component-title">Body Small</div>
+                    <div class="body-small">Used for secondary information, captions, and supporting details.</div>
+                </div>
+                <div class="component-demo">
+                    <div class="component-title">Caption</div>
+                    <div class="caption-text">Fine print, legal text, and very small details.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buttons -->
+        <section class="component-section">
+            <h2>Buttons</h2>
+            <div class="component-grid">
+                <div class="component-demo">
+                    <div class="component-title">Primary Buttons</div>
+                    <button class="btn-primary btn-large">Book Discovery Call</button><br><br>
+                    <button class="btn-primary">Book Now</button><br><br>
+                    <button class="btn-primary btn-small">Subscribe</button>
+                </div>
+                <div class="component-demo">
+                    <div class="component-title">Secondary Buttons</div>
+                    <button class="btn-secondary btn-large">Learn More</button><br><br>
+                    <button class="btn-secondary">Read Full Story</button><br><br>
+                    <button class="btn-secondary btn-small">View Details</button>
+                </div>
+                <div class="component-demo">
+                    <div class="component-title">Text Buttons</div>
+                    <a href="#" class="btn-text">Read my full story</a><br><br>
+                    <a href="#" class="btn-text">Learn more about this</a><br><br>
+                    <a href="#" class="btn-text">View all articles</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cards -->
+        <section class="component-section">
+            <h2>Cards</h2>
+            <div class="component-grid">
+                <div class="component-demo">
+                    <div class="component-title">Service Card</div>
+                    <div class="card card-service">
+                        <h4>1:1 Coaching</h4>
+                        <p>Deep transformation with personalized support and guidance</p>
+                        <div class="price">Starting at $497</div>
+                        <button class="btn-secondary">Book Discovery</button>
+                    </div>
+                </div>
+                <div class="component-demo">
+                    <div class="component-title">Testimonial Card</div>
+                    <div class="card card-testimonial">
+                        <p class="testimonial-text">"Heather's Insight Mapping completely changed how I see myself and my relationships."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"></div>
+                            <div class="author-info">
+                                <h5>Sarah M.</h5>
+                                <p>Marketing Executive</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="component-demo">
+                    <div class="component-title">Blog Card</div>
+                    <div class="card card-blog">
+                        <div class="blog-image"></div>
+                        <div class="blog-meta">March 15, 2025</div>
+                        <h4 class="blog-title">5 Signs You're Living Out of Alignment</h4>
+                        <p class="blog-excerpt">Discover the subtle signs that indicate you may be living according to others' expectations rather than your authentic self...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Forms -->
+        <section class="component-section">
+            <h2>Form Elements</h2>
+            <div class="component-grid">
+                <div class="component-demo">
+                    <div class="component-title">Input Fields</div>
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-input" placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" placeholder="your@email.com">
+                        <div class="form-help">We'll never share your email address</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-input form-textarea" placeholder="Tell me about your goals and challenges..."></textarea>
+                    </div>
+                </div>
+                <div class="component-demo">
+                    <div class="component-title">Select & Checkbox</div>
+                    <div class="form-group">
+                        <label class="form-label">Inquiry Type</label>
+                        <select class="form-select">
+                            <option>Select an option</option>
+                            <option>General Question</option>
+                            <option>Coaching Inquiry</option>
+                            <option>Speaking Request</option>
+                            <option>Media Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="newsletter">
+                            <label for="newsletter">Subscribe to weekly newsletter</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="component-demo">
+                    <div class="component-title">Error States</div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input error" value="invalid-email">
+                        <div class="form-error">Please enter a valid email address</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <section class="component-section">
+            <h2>Navigation</h2>
+            <div class="component-grid">
+                <div class="component-demo">
+                    <div class="component-title">Primary Navigation</div>
+                    <nav class="nav-primary">
+                        <a href="#" class="nav-link">Home</a>
+                        <a href="#" class="nav-link active">About</a>
+                        <a href="#" class="nav-link">Method</a>
+                        <a href="#" class="nav-link">Services</a>
+                        <a href="#" class="nav-link">Resources</a>
+                        <a href="#" class="nav-link">Contact</a>
+                    </nav>
+                </div>
+                <div class="component-demo">
+                    <div class="component-title">Breadcrumb Navigation</div>
+                    <nav class="breadcrumb">
+                        <a href="#" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator">→</span>
+                        <a href="#" class="breadcrumb-link">Resources</a>
+                        <span class="breadcrumb-separator">→</span>
+                        <span class="breadcrumb-current">Blog Post Title</span>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <!-- Badges & Alerts -->
+        <section class="component-section">
+            <h2>Badges & Alerts</h2>
+            <div class="component-grid">
+                <div class="component-demo">
+                    <div class="component-title">Badges</div>
+                    <span class="badge badge-primary">New</span>
+                    <span class="badge badge-secondary">Popular</span>
+                    <span class="badge badge-success">Available</span>
+                    <span class="badge badge-warning">Limited</span>
+                    <span class="badge badge-error">Sold Out</span>
+                </div>
+                <div class="component-demo">
+                    <div class="component-title">Alerts</div>
+                    <div class="alert alert-info">
+                        <strong>Info:</strong> Your discovery call has been scheduled for tomorrow at 2 PM PST.
+                    </div>
+                    <div class="alert alert-success">
+                        <strong>Success:</strong> Your message has been sent successfully. I'll respond within 24 hours.
+                    </div>
+                    <div class="alert alert-warning">
+                        <strong>Warning:</strong> Only 2 spots left in the next group program cohort.
+                    </div>
+                    <div class="alert alert-error">
+                        <strong>Error:</strong> Please check your email address and try again.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading States -->
+        <section class="component-section">
+            <h2>Loading States</h2>
+            <div class="component-grid">
+                <div class="component-demo">
+                    <div class="component-title">Skeleton Loading</div>
+                    <div class="skeleton skeleton-title"></div>
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="skeleton skeleton-text" style="width: 80%;"></div>
+                    <br>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div class="skeleton skeleton-avatar"></div>
+                        <div style="flex: 1;">
+                            <div class="skeleton skeleton-text" style="width: 120px; margin-bottom: 4px;"></div>
+                            <div class="skeleton skeleton-text" style="width: 80px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="component-demo">
+                    <div class="component-title">Spinner</div>
+                    <div class="spinner"></div>
+                    <br><br>
+                    <button class="btn-primary" disabled>
+                        <div class="spinner" style="width: 16px; height: 16px; margin-right: 8px; display: inline-block;"></div>
+                        Loading...
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Color Palette -->
+        <section class="component-section">
+            <h2>Color Palette</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                <div style="text-align: center;">
+                    <div style="width: 100%; height: 80px; background: var(--sage-green); border-radius: 8px; margin-bottom: 8px;"></div>
+                    <strong>Sage Green</strong><br>
+                    <code>#9CAF88</code>
+                </div>
+                <div style="text-align: center;">
+                    <div style="width: 100%; height: 80px; background: var(--warm-cream); border-radius: 8px; margin-bottom: 8px; border: 1px solid var(--light-gray);"></div>
+                    <strong>Warm Cream</strong><br>
+                    <code>#F5F2E9</code>
+                </div>
+                <div style="text-align: center;">
+                    <div style="width: 100%; height: 80px; background: var(--terracotta); border-radius: 8px; margin-bottom: 8px;"></div>
+                    <strong>Terracotta</strong><br>
+                    <code>#C4806B</code>
+                </div>
+                <div style="text-align: center;">
+                    <div style="width: 100%; height: 80px; background: var(--deep-olive); border-radius: 8px; margin-bottom: 8px;"></div>
+                    <strong>Deep Olive</strong><br>
+                    <code>#6B7A5A</code>
+                </div>
+                <div style="text-align: center;">
+                    <div style="width: 100%; height: 80px; background: var(--sandstone); border-radius: 8px; margin-bottom: 8px;"></div>
+                    <strong>Sandstone</strong><br>
+                    <code>#D4B896</code>
+                </div>
+                <div style="text-align: center;">
+                    <div style="width: 100%; height: 80px; background: var(--mocha); border-radius: 8px; margin-bottom: 8px;"></div>
+                    <strong>Mocha</strong><br>
+                    <code>#8B6F47</code>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

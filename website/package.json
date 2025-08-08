@@ -1,0 +1,20 @@
+{
+  "name": "self-inventory-lab",
+  "version": "1.0.0",
+  "description": "Self-Inventory Lab - Transform clarity into embodied action with the Insight Mapping System",
+  "author": "Heather Whitaker",
+  "private": true,
+  "scripts": {
+    "deploy": "vercel",
+    "deploy-prod": "vercel --prod"
+  },
+  "keywords": [
+    "coaching",
+    "human-design",
+    "IFS",
+    "clarity",
+    "personal-development",
+    "insight-mapping"
+  ],
+  "homepage": "https://self-inventory-lab.com"
+}
