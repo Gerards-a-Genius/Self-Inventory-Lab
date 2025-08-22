@@ -880,3 +880,89 @@ p {
   opacity: 1;
   transform: translateX(0);
 }
+
+/* Social Media Links */
+.social-media {
+  margin: 2rem 0 1rem 0;
+  text-align: center;
+}
+
+.social-media-title {
+  font-family: var(--font-accent);
+  font-size: 1.3rem;
+  color: var(--terracotta);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--soft-brown);
+  color: var(--white);
+  border-radius: 50%;
+  text-decoration: none;
+  transition: var(--transition);
+  font-size: 14px;
+}
+
+.social-link:hover {
+  background: var(--terracotta);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(196, 128, 107, 0.3);
+}
+
+.social-link:focus {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 2px;
+}
+
+/* About page social integration */
+.about-connect {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--warm-beige);
+  text-align: center;
+}
+
+.about-connect .social-media-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-connect .social-links {
+  gap: 2rem;
+}
+
+.about-connect .social-link {
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .social-links {
+    gap: 1rem;
+  }
+  
+  .about-connect .social-links {
+    gap: 1.5rem;
+  }
+  
+  .social-link {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+}
