@@ -1067,6 +1067,17 @@ p {
   position: relative;
 }
 
+/* Optical compensation for visual balance */
+.social-link[href*="linkedin"] svg {
+  width: 22px;
+  height: 22px;
+}
+
+.social-link[href*="instagram"] svg {
+  width: 26px;
+  height: 26px;
+}
+
 /* LinkedIn Hover Effect */
 .social-link[href*="linkedin"]:hover {
   background: linear-gradient(135deg, #0077B5, #0066A0);
@@ -1278,6 +1289,17 @@ p {
   height: 28px;
 }
 
+/* Optical compensation for About section */
+.about-connect .social-link[href*="linkedin"] svg {
+  width: 26px;
+  height: 26px;
+}
+
+.about-connect .social-link[href*="instagram"] svg {
+  width: 30px;
+  height: 30px;
+}
+
 /* Professional Photo - Enhanced Styling */
 .professional-photo {
   width: 300px;
@@ -1315,6 +1337,17 @@ p {
   .social-link svg {
     width: 20px;
     height: 20px;
+  }
+  
+  /* Optical compensation for mobile */
+  .social-link[href*="linkedin"] svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .social-link[href*="instagram"] svg {
+    width: 22px;
+    height: 22px;
   }
   
   .about-connect .social-link {
