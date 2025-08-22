@@ -950,6 +950,24 @@ p {
   font-size: 16px;
 }
 
+/* Professional Photo Styles */
+.professional-photo {
+  width: 300px;
+  height: 300px;
+  border-radius: 8px;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+  margin: 0 auto;
+  display: block;
+}
+
+.professional-photo:hover {
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .social-links {
@@ -964,5 +982,17 @@ p {
     width: 32px;
     height: 32px;
     font-size: 16px;
+  }
+  
+  .professional-photo {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .professional-photo {
+    width: 200px;
+    height: 200px;
   }
 }
