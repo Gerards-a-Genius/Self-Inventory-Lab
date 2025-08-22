@@ -44,7 +44,7 @@ body {
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-header);
-  line-height: 1.2;
+  line-height: 1.3;
   margin-bottom: 1rem;
   color: var(--charcoal);
 }
@@ -52,27 +52,32 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 600;
+  line-height: 1.2;
 }
 
 h2 {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 500;
+  line-height: 1.3;
 }
 
 h3 {
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 500;
+  line-height: 1.4;
 }
 
 h4 {
   font-size: 1.5rem;
   font-weight: 500;
+  line-height: 1.4;
 }
 
 p {
   margin-bottom: 1.5rem;
   font-size: 1.1rem;
   font-weight: 400;
+  line-height: 1.7;
 }
 
 .accent-text {
@@ -95,11 +100,15 @@ p {
 }
 
 .section {
-  padding: 6rem 0;
+  padding: 8rem 0;
 }
 
 .section-sm {
-  padding: 4rem 0;
+  padding: 5rem 0;
+}
+
+.text-center {
+  text-align: center;
 }
 
 /* Navigation */
@@ -356,33 +365,82 @@ p {
   margin-bottom: 2rem;
 }
 
+/* Section Headers */
+.section-header {
+  margin-bottom: 4rem;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--soft-brown);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-tagline {
+  font-size: 1.4rem;
+  color: var(--terracotta);
+  margin-bottom: 1.5rem;
+}
+
 /* Service Cards */
 .service-card {
   border-left: 4px solid var(--soft-coral);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.service-card-header {
+  margin-bottom: 2rem;
 }
 
 .service-card h3 {
   color: var(--terracotta);
   margin-bottom: 1rem;
+  font-size: 1.8rem;
 }
 
-.service-price {
-  font-family: var(--font-header);
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--soft-coral);
-  margin: 1.5rem 0;
+.service-tagline {
+  color: var(--soft-brown);
+  font-size: 1.1rem;
+  font-style: italic;
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.service-description {
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+.service-description p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.service-features-section {
+  margin-bottom: 2rem;
+}
+
+.service-features-section h4 {
+  margin-bottom: 1.5rem;
+  color: var(--charcoal);
+  font-size: 1.3rem;
 }
 
 .service-features {
   list-style: none;
-  margin: 1.5rem 0;
+  margin: 0;
 }
 
 .service-features li {
-  padding: 0.5rem 0;
+  padding: 0.8rem 0;
   position: relative;
-  padding-left: 1.5rem;
+  padding-left: 2rem;
+  line-height: 1.6;
 }
 
 .service-features li::before {
@@ -391,6 +449,52 @@ p {
   left: 0;
   color: var(--soft-coral);
   font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.service-cta {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.btn-service {
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Service Card Variants */
+.service-card-popular {
+  border-left-color: var(--terracotta);
+  transform: scale(1.02);
+}
+
+.service-card-popular .service-badge {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: var(--terracotta);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.service-card-featured {
+  border-left-color: var(--soft-coral);
+}
+
+.service-card-comprehensive {
+  border-left-color: var(--soft-brown);
+}
+
+.service-price {
+  font-family: var(--font-header);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--soft-coral);
+  margin: 1.5rem 0;
 }
 
 /* Values Section */
@@ -490,11 +594,42 @@ p {
   }
   
   .section {
-    padding: 4rem 0;
+    padding: 5rem 0;
   }
   
   .card {
     padding: 2rem;
+  }
+  
+  .service-card {
+    padding: 2rem;
+  }
+  
+  .service-card-popular {
+    transform: none;
+  }
+  
+  .decision-guide-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .decision-card {
+    padding: 2rem;
+  }
+  
+  .decision-card-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .faq-question {
+    padding: 1rem 1.5rem;
+  }
+  
+  .faq-answer {
+    padding: 1.5rem;
   }
   
   .about-preview {
@@ -519,13 +654,188 @@ p {
     grid-template-columns: 1fr;
   }
   
+  .decision-guide-grid {
+    grid-template-columns: 1fr;
+  }
+  
   h1 {
     font-size: 2.5rem;
+  }
+  
+  .service-card h3 {
+    font-size: 1.5rem;
+  }
+  
+  .decision-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .section-header {
+    margin-bottom: 3rem;
   }
   
   .btn {
     padding: 0.8rem 2rem;
   }
+  
+  .btn-large {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+  
+  .service-features li {
+    padding-left: 1.5rem;
+  }
+  
+  .decision-features li {
+    padding-left: 1.5rem;
+  }
+}
+
+/* FAQ Section */
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.faq-item:hover {
+  box-shadow: var(--shadow-medium);
+}
+
+.faq-question {
+  background: var(--warm-beige);
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(196, 128, 107, 0.1);
+}
+
+.faq-question h4 {
+  margin: 0;
+  color: var(--charcoal);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.faq-answer {
+  padding: 2rem;
+}
+
+.faq-answer p {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--charcoal);
+}
+
+/* Decision Guide Section */
+.decision-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.decision-card {
+  background: var(--warm-beige);
+  border-radius: var(--border-radius);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.decision-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.decision-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.decision-icon {
+  width: 50px;
+  height: 50px;
+  background: var(--soft-coral);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-header);
+  font-weight: 600;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.decision-card h3 {
+  margin: 0;
+  color: var(--charcoal);
+  font-size: 1.4rem;
+  line-height: 1.3;
+}
+
+.decision-content {
+  flex-grow: 1;
+}
+
+.decision-features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.decision-features li {
+  padding: 0.7rem 0;
+  position: relative;
+  padding-left: 2rem;
+  line-height: 1.6;
+  color: var(--charcoal);
+}
+
+.decision-features li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--soft-coral);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.decision-card-1 .decision-icon {
+  background: var(--soft-coral);
+}
+
+.decision-card-2 .decision-icon {
+  background: var(--terracotta);
+}
+
+.decision-card-3 .decision-icon {
+  background: var(--soft-brown);
+}
+
+/* Contact Section Enhancements */
+.cta-container {
+  margin-top: 3rem;
+}
+
+.btn-large {
+  padding: 1.2rem 3rem;
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
 /* Animation Classes */
