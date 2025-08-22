@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initSmoothScroll();
     initMobileMenu();
+    initSocialMediaDelight();
 });
 
 // Navigation functionality
@@ -165,6 +166,292 @@ document.addEventListener('DOMContentLoaded', function() {
     initButtonAnimations();
 });
 
+// Social Media Delightful Interactions
+function initSocialMediaDelight() {
+    const socialMediaSections = document.querySelectorAll('.social-media');
+    const socialLinks = document.querySelectorAll('.social-link');
+    let customCursor = null;
+    let heartbeatTimeout = null;
+    const encouragingMessages = {
+        linkedin: ['Let\'s connect!', 'Connect for insights!', 'Join my network!', 'Professional connection!'],
+        instagram: ['Follow the journey!', 'Join the inspiration!', 'Behind the scenes!', 'Daily motivation!']
+    };
+    
+    // Create custom cursor
+    function createCustomCursor() {
+        if (customCursor) return;
+        
+        customCursor = document.createElement('div');
+        customCursor.className = 'social-media-cursor';
+        document.body.appendChild(customCursor);
+    }
+    
+    // Add tooltips to social links and set animation delays
+    function addTooltips() {
+        socialLinks.forEach((link, index) => {
+            // Set staggered animation delay
+            link.style.setProperty('--link-index', index);
+            
+            const tooltip = document.createElement('div');
+            tooltip.className = 'social-tooltip';
+            
+            // Determine platform and get random message
+            const isLinkedIn = link.href.includes('linkedin');
+            const platform = isLinkedIn ? 'linkedin' : 'instagram';
+            const messages = encouragingMessages[platform];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            tooltip.textContent = randomMessage;
+            tooltip.classList.add(`${platform}-tip`);
+            
+            // Add alternative class randomly for variety
+            if (Math.random() > 0.5) {
+                tooltip.classList.add('alt');
+            }
+            
+            link.appendChild(tooltip);
+        });
+    }
+    
+    // Magnetic cursor attraction effect
+    function initMagneticEffect() {
+        socialLinks.forEach(link => {
+            const rect = link.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            link.addEventListener('mouseenter', function(e) {
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                
+                const mouseMoveHandler = (e) => {
+                    const rect = this.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    
+                    const deltaX = e.clientX - centerX;
+                    const deltaY = e.clientY - centerY;
+                    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                    
+                    // Apply magnetic effect within 100px radius
+                    if (distance < 100) {
+                        const strength = Math.max(0, 1 - distance / 100);
+                        const maxPull = 8; // Maximum pixels to pull
+                        const pullX = (deltaX / distance) * strength * maxPull;
+                        const pullY = (deltaY / distance) * strength * maxPull;
+                        
+                        this.style.setProperty('--magnetic-x', `${pullX * 0.3}px`);
+                        this.style.setProperty('--magnetic-y', `${pullY * 0.3}px`);
+                        this.classList.add('magnetic');
+                        
+                        // Update cursor position
+                        if (customCursor) {
+                            customCursor.style.left = (e.clientX - 10) + 'px';
+                            customCursor.style.top = (e.clientY - 10) + 'px';
+                            customCursor.classList.add('attracted');
+                        }
+                    }
+                };
+                
+                document.addEventListener('mousemove', mouseMoveHandler);
+                
+                this.addEventListener('mouseleave', function() {
+                    document.removeEventListener('mousemove', mouseMoveHandler);
+                    this.style.setProperty('--magnetic-x', '0px');
+                    this.style.setProperty('--magnetic-y', '0px');
+                    this.classList.remove('magnetic');
+                    
+                    if (customCursor) {
+                        customCursor.classList.remove('attracted');
+                    }
+                }, { once: true });
+            });
+        });
+    }
+    
+    // Heartbeat effect on proximity
+    function initHeartbeatEffect() {
+        socialMediaSections.forEach(section => {
+            section.addEventListener('mouseenter', function() {
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                
+                clearTimeout(heartbeatTimeout);
+                
+                const links = this.querySelectorAll('.social-link');
+                links.forEach(link => {
+                    link.classList.add('heartbeat');
+                });
+                
+                // Stop heartbeat after a few cycles
+                heartbeatTimeout = setTimeout(() => {
+                    links.forEach(link => {
+                        link.classList.remove('heartbeat');
+                    });
+                }, 4500); // 3 heartbeat cycles
+            });
+            
+            section.addEventListener('mouseleave', function() {
+                clearTimeout(heartbeatTimeout);
+                const links = this.querySelectorAll('.social-link');
+                links.forEach(link => {
+                    link.classList.remove('heartbeat');
+                });
+            });
+        });
+    }
+    
+    // Sparkle effect on click
+    function initSparkleEffect() {
+        socialLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                
+                const rect = this.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                
+                this.style.setProperty('--sparkle-x', `${x}%`);
+                this.style.setProperty('--sparkle-y', `${y}%`);
+                
+                this.classList.add('sparkle');
+                
+                // Remove sparkle class after animation
+                setTimeout(() => {
+                    this.classList.remove('sparkle');
+                }, 600);
+                
+                // Add a subtle haptic feedback simulation
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
+            });
+        });
+    }
+    
+    // Custom cursor tracking
+    function initCustomCursor() {
+        createCustomCursor();
+        
+        socialMediaSections.forEach(section => {
+            section.addEventListener('mouseenter', function() {
+                if (customCursor) {
+                    customCursor.classList.add('active');
+                    document.body.style.cursor = 'none';
+                }
+            });
+            
+            section.addEventListener('mouseleave', function() {
+                if (customCursor) {
+                    customCursor.classList.remove('active', 'attracted');
+                    document.body.style.cursor = '';
+                }
+            });
+            
+            section.addEventListener('mousemove', function(e) {
+                if (customCursor && customCursor.classList.contains('active')) {
+                    customCursor.style.left = (e.clientX - 10) + 'px';
+                    customCursor.style.top = (e.clientY - 10) + 'px';
+                }
+            });
+        });
+    }
+    
+    // Add success feedback for clicks
+    function addSuccessFeedback() {
+        socialLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                // Create a subtle success message
+                const feedback = document.createElement('div');
+                feedback.textContent = 'Opening...';
+                feedback.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--soft-coral);
+                    color: white;
+                    padding: 0.5rem 1rem;
+                    border-radius: 6px;
+                    font-size: 0.8rem;
+                    z-index: 10000;
+                    opacity: 0;
+                    transform: translateY(-10px);
+                    transition: all 0.3s ease;
+                    font-family: var(--font-body);
+                `;
+                
+                document.body.appendChild(feedback);
+                
+                // Animate in
+                requestAnimationFrame(() => {
+                    feedback.style.opacity = '1';
+                    feedback.style.transform = 'translateY(0)';
+                });
+                
+                // Remove after delay
+                setTimeout(() => {
+                    feedback.style.opacity = '0';
+                    feedback.style.transform = 'translateY(-10px)';
+                    setTimeout(() => feedback.remove(), 300);
+                }, 1500);
+            });
+        });
+    }
+    
+    // Accessibility: Respect user preferences
+    function respectMotionPreferences() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            // Disable all motion-based effects
+            socialLinks.forEach(link => {
+                link.style.animation = 'none';
+                link.classList.remove('heartbeat', 'magnetic', 'sparkle');
+            });
+            
+            if (customCursor) {
+                customCursor.style.display = 'none';
+            }
+            
+            return true; // Motion is reduced
+        }
+        return false; // Motion is allowed
+    }
+    
+    // Initialize all effects if motion is allowed
+    if (!respectMotionPreferences()) {
+        addTooltips();
+        initMagneticEffect();
+        initHeartbeatEffect();
+        initSparkleEffect();
+        initCustomCursor();
+        addSuccessFeedback();
+    } else {
+        // Still add tooltips and success feedback for accessibility
+        addTooltips();
+        addSuccessFeedback();
+    }
+    
+    // Listen for changes to motion preferences
+    window.matchMedia('(prefers-reduced-motion: reduce)').addListener(respectMotionPreferences);
+    
+    // Performance optimization: Use RAF for smooth animations
+    let rafId;
+    function optimizedMouseMove(e) {
+        if (rafId) return;
+        
+        rafId = requestAnimationFrame(() => {
+            // Update cursor position and magnetic effects
+            if (customCursor && customCursor.classList.contains('active')) {
+                customCursor.style.left = (e.clientX - 10) + 'px';
+                customCursor.style.top = (e.clientY - 10) + 'px';
+            }
+            rafId = null;
+        });
+    }
+    
+    // Apply optimized mouse tracking
+    socialMediaSections.forEach(section => {
+        section.addEventListener('mousemove', optimizedMouseMove);
+    });
+}
+
 // Add ripple animation keyframes
 const style = document.createElement('style');
 style.textContent = `
@@ -270,3 +557,12 @@ function throttle(func, wait) {
 window.addEventListener('scroll', throttle(function() {
     // Scroll-dependent functions can be added here
 }, 16)); // ~60fps
+
+// Clean up on page unload
+window.addEventListener('beforeunload', function() {
+    // Clean up custom cursor and event listeners
+    const customCursor = document.querySelector('.social-media-cursor');
+    if (customCursor) {
+        customCursor.remove();
+    }
+});
