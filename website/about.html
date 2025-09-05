@@ -7,7 +7,44 @@
     <meta name="description" content="Meet Heather, a transformational coach who has guided 500+ clients to bridge the gap between knowing who they are and actually living it.">
     <link rel="stylesheet" href="css/styles.css?v=20250822">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-</head>
+        <script defer src="/_vercel/insights/script.js"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-1VBGDKVFP4"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);} 
+            gtag('js', new Date());
+            gtag('config', 'G-1VBGDKVFP4', {
+                'page_title': document.title,
+                'page_location': window.location.href,
+                'page_path': window.location.pathname
+            });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const bookingLinks = document.querySelectorAll('a[href*="HeatherWhitakerCoaching.as.me"]');
+                bookingLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        gtag('event', 'book_session', {
+                            'event_category': 'engagement',
+                            'event_label': 'Booking Link Click',
+                            'value': 1
+                        });
+                    });
+                });
+
+                const socialLinks = document.querySelectorAll('a[href*="linkedin.com"], a[href*="instagram.com"]');
+                socialLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        const platform = this.href.includes('linkedin') ? 'LinkedIn' : 'Instagram';
+                        gtag('event', 'social_click', {
+                            'event_category': 'engagement',
+                            'event_label': platform,
+                            'value': 1
+                        });
+                    });
+                });
+            });
+        </script>
+        </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">

@@ -110,6 +110,13 @@ vercel logs [deployment-url]
 - Global CDN ensures fast loading worldwide
 - Analytics available in Vercel dashboard
 
+## 📊 Analytics
+
+- Vercel Web Analytics and Speed Insights are already included on all pages via `<script defer src="/_vercel/insights/script.js"></script>` in the `<head>`. View both in the Vercel dashboard.
+- Additional snippets are provided under `analytics/`:
+  - `analytics/analytics-setup-script.html`: GA4/Plausible examples to paste into the `<head>` if desired (replace placeholders).
+  - `analytics/add-analytics-script.js`: Optional Node script to inject GA4/Plausible into all `.html` files. Configure IDs before running.
+
 ## 📧 Support
 
 For website updates or technical support, contact your web developer.
